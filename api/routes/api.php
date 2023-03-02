@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WeatherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,9 @@ Route::get('/', function () {
         'message' => 'all systems are a go',
         'users' => \App\Models\User::all(),
     ]);
+});
+
+
+Route::prefix('api/v1')->group(function () {
+    Route::get('/weather/{latitude}/{longitude}', [WeatherController::class, 'getWeather']);
 });
